@@ -13,7 +13,7 @@ app = FastAPI()
 # Cargar el archivo CSV al iniciar la aplicación
 data = pd.read_csv("archivotransformado.csv")
 
-@app.get("/peliculas por mes")
+@app.post("/peliculas por mes")
 def cantidad_filmaciones_mes(mes: str):
     # Convertir el mes a minúsculas para evitar problemas de mayúsculas
     mes = mes.lower()
