@@ -41,3 +41,30 @@ def cantidad_filmaciones_mes(mes: str):
     cantidad = len(peliculas_mes)
     
     return {"mensaje": f"{cantidad} cantidad de películas fueron estrenadas en el mes de {mes.capitalize()}"}
+
+
+# Diccionario para traducir nombres de días de inglés a español
+dias_traduccion = {
+    "Monday": "Lunes",
+    "Tuesday": "Martes",
+    "Wednesday": "Miércoles",
+    "Thursday": "Jueves",
+    "Friday": "Viernes",
+    "Saturday": "Sábado",
+    "Sunday": "Domingo"
+}
+
+# Convertir la columna de fecha a formato de fecha y extraer el día de la semana en inglés
+data['release_date'] = pd.to_datetime(data['release_date'], errors='coerce')
+data['dia_semana'] = data['release_date'].dt.day_name()
+data['dia_semana'] = data['dia_semana'].map(dias_traduccion)  # Traducir a español
+
+# Inicializar la aplicación FastAPI
+app = FastAPI()
+
+# Definir el endpoint para cantidad_filmaciones_dia
+@app.get("/dia")
+def cantidad_filmaciones_dia(dia: str):
+    dia = dia.capitalize()  # Ajustar la capitalización para comparación
+    cantidad = data[data['dia_semana'] == dia].shape[0]  # Contar películas
+    return {"mensaje": f"{cantidad} películas fueron estrenadas en los días {dia}"}
