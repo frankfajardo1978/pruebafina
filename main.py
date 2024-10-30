@@ -14,10 +14,6 @@ def read_root():
     return {"Bienvenido"}
 
 
-
-# Cargar el archivo CSV al iniciar la aplicación
-data = pd.read_csv("archivotransformado.csv")
-
 @app.get("/")
 def cantidad_filmaciones_mes(mes: str):
     # Convertir el mes a minúsculas para evitar problemas de mayúsculas
