@@ -10,8 +10,8 @@ data = pd.read_csv("archivotransformado.csv")
 
 
 @app.get("/")
-def read_root(fran):
-    return {"Jose Luis"}
+def read_root():
+    return {"Bienvenido"}
 
 
 
