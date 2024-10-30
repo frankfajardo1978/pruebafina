@@ -4,6 +4,12 @@ from datetime import datetime
 
 app = FastAPI()
 
+@app.get("/")
+def read_root():
+    return {"Jose Luis"}
+
+app = FastAPI()
+
 # Cargar el archivo CSV al iniciar la aplicación
 data = pd.read_csv("archivotransformado.csv")
 
