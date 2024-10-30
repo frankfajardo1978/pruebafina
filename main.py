@@ -8,7 +8,7 @@ app = FastAPI()
 def read_root(fran):
     return {"Jose Luis"}
 
-
+app = FastAPI()
 
 # Cargar el archivo CSV al iniciar la aplicación
 data = pd.read_csv("archivotransformado.csv")
