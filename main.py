@@ -2,18 +2,23 @@ from fastapi import FastAPI
 import pandas as pd
 from datetime import datetime
 
-app = FastAPI()
-
-@app.get("/")
-def read_root(fran):
-    return {"Jose Luis"}
-
+# Inicializar la aplicación FastAPI
 app = FastAPI()
 
 # Cargar el archivo CSV al iniciar la aplicación
 data = pd.read_csv("archivotransformado.csv")
 
-@app.post("/")
+
+@app.get("/")
+def read_root(fran):
+    return {"Jose Luis"}
+
+
+
+# Cargar el archivo CSV al iniciar la aplicación
+data = pd.read_csv("archivotransformado.csv")
+
+@app.post("/pelicula por mes")
 def cantidad_filmaciones_mes(mes: str):
     # Convertir el mes a minúsculas para evitar problemas de mayúsculas
     mes = mes.lower()
