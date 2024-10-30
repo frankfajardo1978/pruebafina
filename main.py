@@ -14,7 +14,7 @@ def read_root():
     return {"Bienvenido"}
 
 
-@app.post("/mes/")
+@app.post("/mes")
 def cantidad_filmaciones_mes(mes: str):
     # Convertir el mes a minúsculas para evitar problemas de mayúsculas
     mes = mes.lower()
