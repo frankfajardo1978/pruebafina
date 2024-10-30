@@ -5,7 +5,7 @@ from datetime import datetime
 app = FastAPI()
 
 @app.get("/")
-def read_root(fran:)
+def read_root(fran:str)
     return {"Jose Luis"}
 
 app = FastAPI()
