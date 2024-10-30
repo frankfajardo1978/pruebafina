@@ -11,7 +11,7 @@ data = pd.read_csv("archivotransformado.csv")
 
 @app.get("/")
 def read_root():
-    return {"Bienvenido       
+    return {"Bienvenido")      
     para consultar mes se coloca /mes =   y dia /dia"}
 
 
