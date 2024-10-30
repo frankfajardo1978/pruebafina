@@ -12,8 +12,6 @@ data = pd.read_csv("archivotransformado.csv")
 @app.get("/")
 def read_root():
     return {"Bienvenido"}     
-    para consultar mes se coloca /mes =   y dia /dia"}
-
 
 @app.get("/mes")
 def cantidad_filmaciones_mes(mes: str):
