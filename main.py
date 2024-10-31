@@ -74,7 +74,7 @@ data['dia_semana'] = data['dia_semana'].map(dias_traduccion)  # Traducir a espa�
 
 
 @app.get("/titulo")
-def score_titulo(titulo_de_la_filmacion: str):
+def score_titulo(titulo: str):
     # Buscar la película por título
     film = df[df['title'].str.lower() == titulo_de_la_filmacion.lower()]
     
