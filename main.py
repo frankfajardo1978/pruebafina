@@ -67,3 +67,33 @@ dias_traduccion = {
 data['release_date'] = pd.to_datetime(data['release_date'], errors='coerce')
 data['dia_semana'] = data['release_date'].dt.day_name()
 data['dia_semana'] = data['dia_semana'].map(dias_traduccion)  # Traducir a español
+
+
+
+
+
+
+@app.get("/titulo")
+def score_titulo(titulo_de_la_filmacion: str):
+    # Buscar la película por título
+    film = df[df['title'].str.lower() == titulo_de_la_filmacion.lower()]
+    
+    # Verificar si se encontró la película
+    if film.empty:
+        return {"error": "Película no encontrada"}
+    
+    # Extraer la información deseada
+    titulo = film.iloc[0]['title']
+    año = int(film.iloc[0]['release_year'])
+    score = film.iloc[0]['popularity']
+    
+    return {
+        "mensaje": f"La película {titulo} fue estrenada en el año {año} con un score/popularidad de {score}"
+    }
+
+
+
+
+
+
+
