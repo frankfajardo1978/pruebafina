@@ -92,6 +92,36 @@ def score_titulo(titulo: str):
     }
 
 
+@app.get("/")
+def read_root():
+    return {"message": "Bienvenido a la API de información de películas"}
+
+@app.get("/votos_titulo/{titulo_de_la_filmacion}")
+def votos_titulo(titulo_de_la_filmacion: str):
+    # Filtrar la película por título
+    pelicula = data[data['title'].str.lower() == titulo_de_la_filmacion.lower()]
+    
+    # Comprobar si existe la película
+    if pelicula.empty:
+        raise HTTPException(status_code=404, detail="Película no encontrada")
+
+    # Obtener el número de votos y el promedio de votos
+    votos = pelicula.iloc[0]['vote_count']
+    promedio_votos = pelicula.iloc[0]['vote_average']
+    titulo = pelicula.iloc[0]['title']
+    anio = int(pelicula.iloc[0]['release_year'])
+
+    # Validar si cumple con al menos 2000 votos
+    if votos < 2000:
+        return {"message": f"La película '{titulo}' no cumple con el requisito de 2000 valoraciones."}
+    
+    # Retornar la información si cumple el requisito
+    return {
+        "message": f"La película '{titulo}' fue estrenada en el año {anio}.",
+        "votos_totales": votos,
+        "promedio_votos": promedio_votos
+    }
+
 
 
 
